@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import connect from "../../slomux-library/connect";
-import { changeInterval } from "../slomux/actions";
+import { changeInterval } from "../../slomux/actions";
 
 class IntervalComponent extends Component {
 
@@ -24,13 +24,7 @@ class IntervalComponent extends Component {
   }
 }
 
-const Interval = connect(
-  state => ({
-    currentInterval: state
-  }),
-  dispatch => ({
-    changeInterval: value => dispatch(changeInterval(value))
-  })
+export default connect(
+  state => ({ currentInterval: state }),
+  dispatch => ({ changeInterval: value => dispatch(changeInterval(value))})
 )(IntervalComponent);
-
-export default Interval;

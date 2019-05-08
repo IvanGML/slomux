@@ -55,8 +55,5 @@ class TimerComponent extends Component {
 }
 
 export default connect(
-    state => ({
-        currentInterval: state
-    }),
-    () => {}
+    state => ({ currentInterval: state })
 )(TimerComponent);
