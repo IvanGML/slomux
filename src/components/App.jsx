@@ -1,6 +1,6 @@
 import React from 'react';
-import { store } from './store';
-import Provider from '../slomux/Provider';
+import store from '../slomux/store';
+import Provider from '../slomux-library/Provider';
 import Timer from './timer/Timer';
 
 function App() {

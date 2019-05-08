@@ -1,10 +1,12 @@
-import React from "react";
-import connect from "../../slomux/connect";
+import React, { Component } from "react";
+import connect from "../../slomux-library/connect";
 import { changeInterval } from "../slomux/actions";
 
-class IntervalComponent extends React.Component {
+class IntervalComponent extends Component {
+
   increaseInterval = () => this.props.changeInterval(1000);
   decreaseInterval = () => this.props.changeInterval(-1000);
+
   render() {
     const { currentInterval } = this.props;
     const isDisabled = currentInterval <= 1000;
@@ -14,9 +16,7 @@ class IntervalComponent extends React.Component {
           Интервал обновления секундомера: {currentInterval / 1000} сек.
         </span>
         <span>
-          <button onClick={this.decreaseInterval} disabled={isDisabled}>
-            -
-          </button>
+          <button onClick={this.decreaseInterval} disabled={isDisabled}>-</button>
           <button onClick={this.increaseInterval}>+</button>
         </span>
       </div>
