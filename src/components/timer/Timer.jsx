@@ -1,59 +1,41 @@
-import React, { Component } from "react";
-import Interval from "../interval/Interval";
-import connect from "../../slomux-library/connect";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Interval from '../interval/IntervalContainer';
 
-class TimerComponent extends Component {
-    state = {
-        currentTime: 0,
-        isTimerStarted: false
-    };
-
-    handleStart = () => {
-        this.setState({ isTimerStarted: true });
-        this.timerInstance = setInterval(() =>
-                this.setState({
-                    currentTime: this.state.currentTime + this.props.currentInterval
-                }),
-            this.props.currentInterval
-        );
-    };
-
-    handleStop = () => {
-        this.setState({
-                currentTime: 0,
-                isTimerStarted: false
-            },
-            () => clearInterval(this.timerInstance)
-        );
-    };
-
-    render() {
-        const { isTimerStarted, currentTime } = this.state;
-        const { currentInterval } = this.props;
-        return (
+const Timer = ({timerTime, isStarted, start, stop, reset}) => {
+    return (
+        <div>
+            <Interval />
+            <div>Секундомер: {timerTime / 1000} сек.</div>
             <div>
-                <div style={{ display: isTimerStarted ? "none" :"block"  }}>
-                    <Interval />
-                </div>
-                <div style={{ display: isTimerStarted ? "block" : "none" }}>
-                   <span>
-                        Интервал обновления секундомера: {currentInterval / 1000} сек.
-                   </span>
-                </div>
-                <div>Секундомер: {currentTime / 1000} сек.</div>
-                <div>
-                    <button onClick={this.handleStart} disabled={isTimerStarted}>
-                       Старт
-                    </button>
-                    <button onClick={this.handleStop} disabled={!isTimerStarted}>
-                       Стоп
-                    </button>
-                </div>
+                <button onClick={start} disabled={isStarted}>
+                   Старт
+                </button>
+                <button onClick={stop} disabled={!isStarted}>
+                   Пауза
+                </button>
+                <button onClick={reset}>
+                   Сбросить
+                </button>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
-export default connect(
-    state => ({ currentInterval: state })
-)(TimerComponent);
+Timer.defaultProps = {
+    timerTime: 1000,
+    isStarted: false,
+    start: ()=>{},
+    stop: ()=>{},
+    reset: ()=>{},
+};
+
+Timer.propTypes = {
+    timerTime: PropTypes.number,
+    isStarted: PropTypes.bool,
+    start: PropTypes.func,
+    stop: PropTypes.func,
+    reset: PropTypes.func,
+};
+
+export default Timer;

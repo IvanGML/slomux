@@ -1,30 +1,34 @@
-import React, { Component } from "react";
-import connect from "../../slomux-library/connect";
-import { changeInterval } from "../../slomux/actions";
+import React from "react";
+import PropTypes from "prop-types";
 
-class IntervalComponent extends Component {
+const Interval = ({interval, isStarted, decrease, increase, isDisabled}) => {
+  return (
+    <div>
+        <span>Интервал обновления секундомера: {interval / 1000} сек.</span>
+        {!isStarted && (
+            <span>
+                <button onClick={decrease} disabled={isDisabled}>-</button>
+                <button onClick={increase}>+</button>
+            </span>
+        )}
+    </div>
+  );
+};
 
-  increaseInterval = () => this.props.changeInterval(1000);
-  decreaseInterval = () => this.props.changeInterval(-1000);
+Interval.defaultProps = {
+    interval: 1000,
+    isStarted: false,
+    decrease: ()=>{},
+    increase: ()=>{},
+    isDisabled: true,
+};
 
-  render() {
-    const { currentInterval } = this.props;
-    const isDisabled = currentInterval <= 1000;
-    return (
-      <div>
-        <span>
-          Интервал обновления секундомера: {currentInterval / 1000} сек.
-        </span>
-        <span>
-          <button onClick={this.decreaseInterval} disabled={isDisabled}>-</button>
-          <button onClick={this.increaseInterval}>+</button>
-        </span>
-      </div>
-    );
-  }
-}
+Interval.propTypes = {
+    interval: PropTypes.number,
+    isStarted: PropTypes.bool,
+    decrease: PropTypes.func,
+    increase: PropTypes.func,
+    isDisabled: PropTypes.bool,
+};
 
-export default connect(
-  state => ({ currentInterval: state }),
-  dispatch => ({ changeInterval: value => dispatch(changeInterval(value))})
-)(IntervalComponent);
+export default Interval;

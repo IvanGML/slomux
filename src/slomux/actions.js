@@ -1,6 +1,27 @@
-import { CHANGE_INTERVAL } from './constants';
+import { CHANGE_INTERVAL, CHANGE_TIMER_STATE, CHANGE_TIMER_TIME, RESET_INTERVAL } from './constants';
 
-export const changeInterval = value => ({
+const changeInterval = value => ({
     type: CHANGE_INTERVAL,
-    payload: value,
-})
+    interval: value,
+});
+
+const changeTimerState = value => ({
+    type: CHANGE_TIMER_STATE,
+    isStarted: value,
+});
+
+const changeTimerTime = value => ({
+    type: CHANGE_TIMER_TIME,
+    timerTime: value,
+});
+
+const resetInterval = () => ({
+    type: RESET_INTERVAL,
+});
+
+export {
+    changeInterval,
+    changeTimerState,
+    changeTimerTime,
+    resetInterval,
+}
