@@ -1,4 +1,4 @@
-## Move timer state into slomux store
+## Timer state contained inside slomux store
 
 ### `npm start`
 
