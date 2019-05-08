@@ -8,23 +8,23 @@ class IntervalComponent extends Component {
   decreaseInterval = () => this.props.changeInterval(-1000);
 
   render() {
-    const { currentInterval } = this.props;
-    const isDisabled = currentInterval <= 1000;
+    const { interval, isStarted } = this.props;
+    const isDisabled = interval <= 1000;
     return (
       <div>
         <span>
-          Интервал обновления секундомера: {currentInterval / 1000} сек.
+          Интервал обновления секундомера: {interval / 1000} сек.
         </span>
-        <span>
+        {!isStarted && <span>
           <button onClick={this.decreaseInterval} disabled={isDisabled}>-</button>
           <button onClick={this.increaseInterval}>+</button>
-        </span>
+        </span>}
       </div>
     );
   }
 }
 
 export default connect(
-  state => ({ currentInterval: state }),
+  ({interval, isStarted}) => ({ interval, isStarted }),
   dispatch => ({ changeInterval: value => dispatch(changeInterval(value))})
 )(IntervalComponent);
