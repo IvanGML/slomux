@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @param {mapStateToProps} connect - function with store properties
+ * @param {mapDispatchToProps} connect - function with actions 
+ * 
+ * Connect actually just HOC that gets state from context and from props
+ * and pass in inside returned react component.
+ * 
+ * it happen every time of initializing and resieving new props
+ */
 export default (
     mapStateToProps = () => ({}),
     mapDispatchToProps = () => ({})

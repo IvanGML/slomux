@@ -1,5 +1,5 @@
 /**
- * validate an action
+ * validate an action creator. it should be object with required property 'type'
  */
 const validateAction = action => {
     if (!action || typeof action !== 'object' || Array.isArray(action)) {
@@ -10,6 +10,11 @@ const validateAction = action => {
     }
 };
 
+/**
+ * @param {function} reducer - pure function that describe how to handle any action
+ * 
+ * createStore function return 3 methods that get, change and subsribe slomux store
+ */
 const createStore = reducer => {
     let currentState;
     const subscribers = [];
@@ -21,9 +26,9 @@ const createStore = reducer => {
     const getState = () => currentState;
     const subscribe = callback => {
         subscribers.push(callback);
-        return () => subscribers.filter(cb => cb !== callback);
+        return () => subscribers.filter(cb => cb !== callback);// return unsubscribe function
     }
-    dispatch({
+    dispatch({//to set initial state reducer should be called once
         type: 'initialize'
     });
     return {

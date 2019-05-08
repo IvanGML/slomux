@@ -5,7 +5,12 @@ const initialState = {
     timerTime: 0,
     isStarted: false,
 }
-
+/**
+ * reducer - pure function that manage state. always return new state, not mutate previous
+ * 
+ * @param {object} state - initial or existing state
+ * @param {object} action - describe what should happen with any type and some payload
+ */
 export default (state = initialState, action) => {
     const { interval, isStarted, timerTime} = action;
     switch (action.type) {

@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * define Provider component that set inner property 'store'.
+ * 
+ * 'store' will be passed to each children inside 'context' property 
+ * if childContextTypes with 'store: PropTypes.object' has been defined
+ */
 class Provider extends React.Component {
   getChildContext() {
     return {

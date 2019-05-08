@@ -3,6 +3,10 @@ import connect from '../../slomux-library/connect';
 import { changeInterval } from '../../slomux/actions';
 import Interval from './Interval';
 
+/**
+ * IntervalComponent is container component that gets props from slomux
+ * and pass it to presentational component Interval
+ */
 class IntervalComponent extends Component {
 
   increaseInterval = () => this.props.changeInterval(1000);

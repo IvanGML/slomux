@@ -3,6 +3,15 @@ import Timer from './Timer';
 import connect from '../../slomux-library/connect';
 import { changeTimerState, changeTimerTime, resetInterval} from '../../slomux/actions';
 
+/**
+ * TimerComponent is container component that gets props from slomux
+ * and pass it to presentational component Timer.
+ * 
+ * This component has own state with interval. In common case it would be
+ * good to contain data of timer time and timer state inside component. So this
+ * is just a showcase of how it might be passed in single store and retreived
+ * in any places of app.
+ */
 class TimerComponent extends Component {
 
     handleStart = () => {

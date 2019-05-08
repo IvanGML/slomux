@@ -1,6 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Interval is an presentational component
+ * 
+ * params easy to understand props properties validation in the bottom
+ */
+
 const Interval = ({interval, isStarted, decrease, increase, isDisabled}) => {
   return (
     <div>

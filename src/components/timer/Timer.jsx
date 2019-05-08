@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Interval from '../interval/IntervalContainer';
 
+/**
+ * Timer is an presentational component
+ * 
+ * params easy to understand props properties validation in the bottom
+ */
 const Timer = ({timerTime, isStarted, start, stop, reset}) => {
     return (
         <div>
