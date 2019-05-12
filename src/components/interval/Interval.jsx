@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 /**
@@ -7,19 +7,22 @@ import PropTypes from "prop-types";
  * params easy to understand props properties validation in the bottom
  */
 
-const Interval = ({interval, isStarted, decrease, increase, isDisabled}) => {
-  return (
-    <div>
-        <span>Интервал обновления секундомера: {interval / 1000} сек.</span>
-        {!isStarted && (
-            <span>
-                <button onClick={decrease} disabled={isDisabled}>-</button>
-                <button onClick={increase}>+</button>
-            </span>
-        )}
-    </div>
-  );
-};
+class Interval extends PureComponent {
+    render() {
+        const {interval, isStarted, decrease, increase, isDisabled} = this.props;
+        return (
+            <div>
+                <span>Интервал обновления секундомера: {interval / 1000} сек.</span>
+                {!isStarted && (
+                    <span>
+                        <button onClick={decrease} disabled={isDisabled}>-</button>
+                        <button onClick={increase}>+</button>
+                    </span>
+                )}
+            </div>
+          );
+    }
+}
 
 Interval.defaultProps = {
     interval: 1000,
